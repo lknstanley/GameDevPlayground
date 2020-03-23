@@ -36,7 +36,9 @@ public class PooledObject : MonoBehaviour
 
     public virtual void Spawn()
     {
+        // Set the time left to the life time
         currentTimeLeft = lifeTime;
+        // Show the object to the screen
         gameObject.SetActive( true );
     }
 
@@ -44,9 +46,6 @@ public class PooledObject : MonoBehaviour
     {
         // Force set the time left to zero, in case the life time is not finish
         currentTimeLeft = 0.0f;
-        // Reset the position and scale once the pool object is going to despawn
-        gameObject.transform.position = Vector3.zero;
-        gameObject.transform.localScale = Vector3.one;
         // Hide this object from screen
         gameObject.SetActive( false );
     }

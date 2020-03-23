@@ -28,5 +28,8 @@ public class AutoScalePooledCube : PooledObject
     public override void Despawn()
     {
         base.Despawn();
+        // Reset the position and scale once the pool object is going to despawn
+        gameObject.transform.position = Vector3.zero;
+        gameObject.transform.localScale = Vector3.one;
     }
 }
