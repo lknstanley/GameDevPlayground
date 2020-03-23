@@ -1,6 +1,6 @@
 # GameDevPlayground
 
-This repo is used to posting my game development technologies and research with Unity3D.
+This repo is used to post my game development technologies and research with Unity3D.
 
 # Roadmap
 
