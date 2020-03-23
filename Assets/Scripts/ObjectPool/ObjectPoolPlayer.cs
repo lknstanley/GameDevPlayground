@@ -10,7 +10,7 @@ public class ObjectPoolPlayer : MonoBehaviour
     void Update()
     {
         // When the player presses SpaceBar
-        if( Input.GetKeyUp( KeyCode.Space ) )
+        if( Input.GetKeyDown( KeyCode.Space ) )
         {
             SpawnAutoScaleCube();
         }
