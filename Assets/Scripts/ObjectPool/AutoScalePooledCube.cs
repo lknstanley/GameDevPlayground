@@ -1,35 +1,38 @@
 ﻿using UnityEngine;
 
-public class AutoScalePooledCube : PooledObject
+namespace ObjectPool
 {
-    // Start is called before the first frame update
-    public override void Start()
+    public class AutoScalePooledCube : PooledObject
     {
-        base.Start();
-    }
-
-    // Update is called once per frame
-    public override void Update()
-    {
-        base.Update();
-        
-        if( gameObject.activeSelf )
+        // Start is called before the first frame update
+        public override void Start()
         {
-            transform.localScale = transform.localScale * Mathf.Sin( Time.deltaTime + 2 );
+            base.Start();
         }
 
-    }
+        // Update is called once per frame
+        public override void Update()
+        {
+            base.Update();
+        
+            if( gameObject.activeSelf )
+            {
+                transform.localScale = transform.localScale * Mathf.Sin( Time.deltaTime + 2 );
+            }
 
-    public override void Spawn()
-    {
-        base.Spawn();
-    }
+        }
 
-    public override void Despawn()
-    {
-        base.Despawn();
-        // Reset the position and scale once the pool object is going to despawn
-        gameObject.transform.position = Vector3.zero;
-        gameObject.transform.localScale = Vector3.one;
+        public override void Spawn()
+        {
+            base.Spawn();
+        }
+
+        public override void Despawn()
+        {
+            base.Despawn();
+            // Reset the position and scale once the pool object is going to despawn
+            gameObject.transform.position = Vector3.zero;
+            gameObject.transform.localScale = Vector3.one;
+        }
     }
 }
