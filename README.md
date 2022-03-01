@@ -4,10 +4,11 @@ This repo is used to post my game development technologies and research with Uni
 
 # Roadmap
 
-1. Object Pooling
-2. Event System / Observer
-3. New Input System from Unity
-4. ...Planning...
+1. Object Pooling [100%]
+2. Event System / Observer [WIP]
+3. Command Pattern [TBC]
+4. New Input System from Unity [TBC]
+5. ...Planning...
 
 # Development Environment
 
