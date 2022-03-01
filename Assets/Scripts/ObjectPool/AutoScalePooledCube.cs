@@ -17,7 +17,7 @@ namespace ObjectPool
         
             if( gameObject.activeSelf )
             {
-                transform.localScale = transform.localScale * Mathf.Sin( Time.deltaTime + 2 );
+                transform.localScale *= Mathf.Sin( Time.deltaTime + 2 );
             }
 
         }

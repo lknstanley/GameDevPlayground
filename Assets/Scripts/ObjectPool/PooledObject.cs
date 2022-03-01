@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using ObjectPool.Core;
+using UnityEngine;
 
 namespace ObjectPool
 {
-    public class PooledObject : MonoBehaviour
+    public class PooledObject : MonoBehaviour, IPoolable
     {
 
         private float _currentTimeLeft = 0.0f;
