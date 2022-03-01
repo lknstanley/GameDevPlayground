@@ -7,11 +7,12 @@ This repo is used to post my game development technologies and research with Uni
 1. Object Pooling [100%]
 2. Event System / Observer [WIP]
 3. Command Pattern [TBC]
-4. New Input System from Unity [TBC]
-5. ...Planning...
+4. Heap [TBC]
+5. New Input System from Unity [TBC]
+6. ...Planning...
 
 # Development Environment
 
-Engine: `Unity 2019.1.3f1`
+Engine: `Unity 2021.2.7f1`
 
-Editor: `VSCode`
+Editor: `JetBrain Rider`
