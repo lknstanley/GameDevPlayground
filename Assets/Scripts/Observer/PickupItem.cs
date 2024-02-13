@@ -1,28 +1,37 @@
 ﻿using Observer.Core;
-using UnityEngine;
 using EventHandler = Observer.Core.EventHandler;
 
 namespace Observer
 {
-    public class PickupItem : MonoBehaviour
+    public class PickupItem : Interactable, IObserver
     {
-        private BoxCollider _collider;
-
-        private void Start()
+        protected override void Start()
         {
-            _collider = GetComponent< BoxCollider >();
+            base.Start();
+            EventHandler.GetInstance().Subscribe( ObserverEventType.SucceedToUnlockedDoor, this );
         }
 
-        private void OnTriggerEnter( Collider other )
+        protected override void OnDestroy()
         {
-            Debug.Log( $"{other.gameObject.name} collides with me!" );
-            EventHandler.GetInstance().Notify( ObserverEventType.PickupItem, gameObject );
-            _collider.enabled = false;
+            base.OnDestroy();
+            EventHandler.GetInstance().Unsubscribe( ObserverEventType.SucceedToUnlockedDoor, this );
         }
 
-        public void Use()
+        public void OnNotify( ObserverEventType eventType, object data )
         {
-            transform.SetParent( null );
+            switch ( eventType )
+            {
+                case ObserverEventType.SucceedToUnlockedDoor:
+                    Destroy( gameObject );
+                    break;
+            }
+        }
+
+        public override void Interact()
+        {
+            base.Interact();
+            EventHandler.GetInstance().Notify( ObserverEventType.Interacted, gameObject );
+            InteractableCollider.enabled = false;
         }
     }
 }
