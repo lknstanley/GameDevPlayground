@@ -17,3 +17,12 @@ This repo is used to post my game development technologies and research with Uni
 Engine: `Unity 2021.3.8f1`
 
 Editor: `JetBrain Rider`
+
+# References
+
+1. [Unity Official Documentation](https://docs.unity3d.com/Manual/index.html)
+2. [Game Programming Patterns](https://gameprogrammingpatterns.com/)
+
+# Used Libraries
+
+1. None
