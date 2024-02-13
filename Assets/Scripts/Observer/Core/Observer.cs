@@ -1,54 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Observer.Core
 {
-    public class Observer< T, TK > 
-        where T : IObserver< TK > 
-        where TK : Enum
+    public class EventHandler : MonoBehaviour
     {
-        private Dictionary< TK, List< T > > _subject;
+        private static EventHandler _instance;
+        private readonly Dictionary< ObserverEventType, List< IObserver > > _observers = new();
 
-        public Observer()
+        private void Awake()
         {
-            _subject = new Dictionary< TK, List< T > >();
+            if ( _instance == null )
+                _instance = this;
+            else
+                Destroy( gameObject );
         }
 
-        /// <summary>
-        /// Subscribe event
-        /// </summary>
-        /// <param name="eventType">Target event type</param>
-        /// <param name="receiver">Observer</param>
-        public void Subscribe( TK eventType, T receiver )
+        public static EventHandler GetInstance()
         {
-            // Check subject dictionary contains target event type or not
-            if ( !_subject.ContainsKey( eventType ) )
-                _subject.Add( eventType, new List< T >() );
-            
-            // Add receiver to the dictionary
-            _subject[ eventType ].Add( receiver );
+            if ( _instance == null )
+                _instance = new GameObject( "EventHandler" ).AddComponent< EventHandler >();
+            return _instance;
         }
 
-        /// <summary>
-        /// Unsubscribe event
-        /// </summary>
-        /// <param name="receiver">Observer</param>
-        public void Unsubscribe( T receiver )
+        public void Subscribe( ObserverEventType eventType, IObserver observer )
         {
-            // Clean all receiver from dictionary
-            foreach ( var kvp in _subject )
-                kvp.Value.Remove( receiver );
+            if ( !_observers.ContainsKey( eventType ) )
+                _observers.Add( eventType, new List< IObserver >() );
+            _observers[ eventType ].Add( observer );
         }
 
-        /// <summary>
-        /// Notify objects by a given event type
-        /// </summary>
-        /// <param name="eventType">Target event type</param>
-        /// <param name="data">Optional data</param>
-        public void Notify( TK eventType, object data )
+        public void Unsubscribe( ObserverEventType eventType, IObserver observer )
         {
-            if ( _subject.ContainsKey( eventType ) )
-                _subject[ eventType ].ForEach( item => item.OnNotify( eventType, data ) );
+            if ( _observers.TryGetValue( eventType, out var listOfTargetedObservers ) )
+                listOfTargetedObservers.Remove( observer );
+        }
+
+        public void Notify( ObserverEventType eventType, object data )
+        {
+            // loop through all observers and find the correct one
+            if ( _observers.TryGetValue( eventType, out var observers ) )
+                foreach ( var observer in observers )
+                    observer.OnNotify( eventType, data );
         }
     }
 }

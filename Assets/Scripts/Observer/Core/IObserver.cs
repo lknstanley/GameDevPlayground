@@ -1,8 +1,7 @@
-﻿using System;
-namespace Observer.Core
+﻿namespace Observer.Core
 {
-    public interface IObserver< in TK > where TK : Enum
+    public interface IObserver
     {
-        void OnNotify( TK eventType, object data );
+        void OnNotify( ObserverEventType eventType, object data );
     }
 }

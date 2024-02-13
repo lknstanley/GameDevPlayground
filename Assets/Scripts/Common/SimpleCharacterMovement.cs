@@ -34,7 +34,7 @@ namespace Common
             Vector3 mouseRotate = new Vector3( 
                 -Input.GetAxis( "Mouse Y" ), 
                 Input.GetAxis( "Mouse X" ), 
-                0 ) * mouseSensitive * Time.deltaTime;
+                0 ) * (mouseSensitive * Time.deltaTime);
             Vector3 currentAngles = transform.eulerAngles;
             currentAngles += mouseRotate;
             transform.eulerAngles = currentAngles;
@@ -42,8 +42,7 @@ namespace Common
             // Update input for movement
             Vector3 movement = new Vector3( Input.GetAxis( "Horizontal" ), 0, Input.GetAxis( "Vertical" ) );
             Vector3 motion =
-                ( Vector3.Scale( transform.right, movement ) + Vector3.Scale( transform.forward, movement ) ) *
-                movementSpeed * Time.deltaTime;
+                ( Vector3.Scale( transform.right, movement ) + Vector3.Scale( transform.forward, movement ) ) * (movementSpeed * Time.deltaTime);
             _charaController.Move( motion );
         }
     }
