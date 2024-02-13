@@ -10,7 +10,7 @@ This repo is used to post my game development technologies and research with Uni
 4. UI Navigation System [WIP]
 5. Heap [TBC]
 6. New Input System from Unity [TBC]
-7. ...Planning...
+7. Mini Game with all the above [TBC]
 
 # Development Environment
 
