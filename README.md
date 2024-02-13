@@ -6,10 +6,11 @@ This repo is used to post my game development technologies and research with Uni
 
 1. Object Pooling [100%]
 2. Event System / Observer [100%]
-3. Command Pattern [WIP]
-4. Heap [TBC]
-5. New Input System from Unity [TBC]
-6. ...Planning...
+3. Command Pattern [100%]
+4. UI Navigation System [WIP]
+5. Heap [TBC]
+6. New Input System from Unity [TBC]
+7. ...Planning...
 
 # Development Environment
 
