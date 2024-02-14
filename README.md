@@ -25,4 +25,5 @@ Editor: `JetBrain Rider`
 
 # Used Libraries
 
-1. None
+1. [Surge](https://surge.pixelplacement.com/)
+ - Used for animating UI transitions
