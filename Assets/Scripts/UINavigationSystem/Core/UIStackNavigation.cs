@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UINavigationSystem.Core.Interface;
+using UnityEngine;
 
 namespace UINavigationSystem.Core
 {
@@ -12,7 +13,7 @@ namespace UINavigationSystem.Core
             _viewControllerStack = new Stack< IUIEvent >();
         }
 
-        public async void Push( IUIEvent viewController )
+        public async void Push( Transform root, IUIEvent viewController )
         {
             // Call the UI lifecycle events
             await viewController.OnLoad();
@@ -32,13 +33,6 @@ namespace UINavigationSystem.Core
             // Pop the view controller from the stack
             var poppedView = _viewControllerStack.Pop();
             await poppedView.OnPop();
-
-            // Display the last UI view
-            var lastView = _viewControllerStack.Peek();
-            await lastView.OnLoad();
-            await lastView.PostLoad();
-            await lastView.OnDisplay();
-            await lastView.PostDisplay();
         }
     }
 }
