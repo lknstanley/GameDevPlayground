@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CommandPattern.Core;
+using Games.FindThePatternsGame.Managers;
 using UnityEngine;
 
 namespace CommandPattern
 {
-    public class CommandManager : MonoBehaviour
+    public class CommandManager : MonoBehaviour, IManagerEvent< CommandManager >
     {
         [ Header( "Command Histories" ) ]
         private readonly List< ICommand > _histories = new();
@@ -17,6 +19,19 @@ namespace CommandPattern
         {
             _historiesBuffer = new Queue< ICommand >();
         }
+
+        #region Manager Interface
+
+        public CommandManager GetInstance()
+        {
+            return this;
+        }
+
+        public async Task LoadAsset()
+        {
+        }
+
+        #endregion
 
         #region Interfaces
 

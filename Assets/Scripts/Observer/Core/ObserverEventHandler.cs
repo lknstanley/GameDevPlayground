@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Games.FindThePatternsGame.Managers;
 using UnityEngine;
 
 namespace Observer.Core
 {
-    public class ObserverEventHandler : MonoBehaviour
+    public class ObserverEventHandler : MonoBehaviour, IManagerEvent< ObserverEventHandler >
     {
         private static ObserverEventHandler _instance;
         private readonly Dictionary< ObserverEventType, List< IObserver > > _observers = new();
@@ -14,6 +16,15 @@ namespace Observer.Core
                 _instance = this;
             else
                 Destroy( gameObject );
+        }
+
+        ObserverEventHandler IManagerEvent< ObserverEventHandler >.GetInstance()
+        {
+            return GetInstance();
+        }
+
+        public async Task LoadAsset()
+        {
         }
 
         public static ObserverEventHandler GetInstance()
