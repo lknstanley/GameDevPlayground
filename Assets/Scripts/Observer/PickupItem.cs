@@ -1,5 +1,4 @@
 ﻿using Observer.Core;
-using EventHandler = Observer.Core.EventHandler;
 
 namespace Observer
 {
@@ -8,13 +7,13 @@ namespace Observer
         protected override void Start()
         {
             base.Start();
-            EventHandler.GetInstance().Subscribe( ObserverEventType.SucceedToUnlockedDoor, this );
+            ObserverEventHandler.GetInstance().Subscribe( ObserverEventType.SucceedToUnlockedDoor, this );
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            EventHandler.GetInstance().Unsubscribe( ObserverEventType.SucceedToUnlockedDoor, this );
+            ObserverEventHandler.GetInstance().Unsubscribe( ObserverEventType.SucceedToUnlockedDoor, this );
         }
 
         public void OnNotify( ObserverEventType eventType, object data )
@@ -30,7 +29,7 @@ namespace Observer
         public override void Interact()
         {
             base.Interact();
-            EventHandler.GetInstance().Notify( ObserverEventType.Interacted, gameObject );
+            ObserverEventHandler.GetInstance().Notify( ObserverEventType.Interacted, gameObject );
             InteractableCollider.enabled = false;
         }
     }

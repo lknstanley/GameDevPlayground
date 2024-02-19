@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Observer.Core
 {
-    public class EventHandler : MonoBehaviour
+    public class ObserverEventHandler : MonoBehaviour
     {
-        private static EventHandler _instance;
+        private static ObserverEventHandler _instance;
         private readonly Dictionary< ObserverEventType, List< IObserver > > _observers = new();
 
         private void Awake()
@@ -16,10 +16,10 @@ namespace Observer.Core
                 Destroy( gameObject );
         }
 
-        public static EventHandler GetInstance()
+        public static ObserverEventHandler GetInstance()
         {
             if ( _instance == null )
-                _instance = new GameObject( "EventHandler" ).AddComponent< EventHandler >();
+                _instance = new GameObject( "EventHandler" ).AddComponent< ObserverEventHandler >();
             return _instance;
         }
 

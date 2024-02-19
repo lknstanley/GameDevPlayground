@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Observer.Core;
 using UnityEngine;
-using EventHandler = Observer.Core.EventHandler;
 
 namespace Observer
 {
@@ -14,10 +13,10 @@ namespace Observer
 
         private void Start()
         {
-            EventHandler.GetInstance().Subscribe( ObserverEventType.Interacted, this );
-            EventHandler.GetInstance().Subscribe( ObserverEventType.ReachInteractable, this );
-            EventHandler.GetInstance().Subscribe( ObserverEventType.LeaveInteractable, this );
-            EventHandler.GetInstance().Subscribe( ObserverEventType.UnlockDoor, this );
+            ObserverEventHandler.GetInstance().Subscribe( ObserverEventType.Interacted, this );
+            ObserverEventHandler.GetInstance().Subscribe( ObserverEventType.ReachInteractable, this );
+            ObserverEventHandler.GetInstance().Subscribe( ObserverEventType.LeaveInteractable, this );
+            ObserverEventHandler.GetInstance().Subscribe( ObserverEventType.UnlockDoor, this );
         }
 
         private void Update()
@@ -27,10 +26,10 @@ namespace Observer
 
         private void OnDestroy()
         {
-            EventHandler.GetInstance().Unsubscribe( ObserverEventType.Interacted, this );
-            EventHandler.GetInstance().Unsubscribe( ObserverEventType.ReachInteractable, this );
-            EventHandler.GetInstance().Unsubscribe( ObserverEventType.LeaveInteractable, this );
-            EventHandler.GetInstance().Unsubscribe( ObserverEventType.UnlockDoor, this );
+            ObserverEventHandler.GetInstance().Unsubscribe( ObserverEventType.Interacted, this );
+            ObserverEventHandler.GetInstance().Unsubscribe( ObserverEventType.ReachInteractable, this );
+            ObserverEventHandler.GetInstance().Unsubscribe( ObserverEventType.LeaveInteractable, this );
+            ObserverEventHandler.GetInstance().Unsubscribe( ObserverEventType.UnlockDoor, this );
         }
 
         public void OnNotify( ObserverEventType eventType, object data )
@@ -82,9 +81,9 @@ namespace Observer
                         break;
                     case InteractableType.Door:
                         if ( _hasKey )
-                            EventHandler.GetInstance().Notify( ObserverEventType.SucceedToUnlockedDoor, null );
+                            ObserverEventHandler.GetInstance().Notify( ObserverEventType.SucceedToUnlockedDoor, null );
                         else
-                            EventHandler.GetInstance().Notify( ObserverEventType.FailedToUnlockDoor, null );
+                            ObserverEventHandler.GetInstance().Notify( ObserverEventType.FailedToUnlockDoor, null );
                         break;
                 }
         }

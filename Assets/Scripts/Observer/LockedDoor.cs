@@ -1,6 +1,5 @@
 using Observer.Core;
 using UnityEngine;
-using EventHandler = Observer.Core.EventHandler;
 
 namespace Observer
 {
@@ -25,15 +24,15 @@ namespace Observer
         protected override void Start()
         {
             base.Start();
-            EventHandler.GetInstance().Subscribe( ObserverEventType.SucceedToUnlockedDoor, this );
-            EventHandler.GetInstance().Subscribe( ObserverEventType.FailedToUnlockDoor, this );
+            ObserverEventHandler.GetInstance().Subscribe( ObserverEventType.SucceedToUnlockedDoor, this );
+            ObserverEventHandler.GetInstance().Subscribe( ObserverEventType.FailedToUnlockDoor, this );
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            EventHandler.GetInstance().Unsubscribe( ObserverEventType.SucceedToUnlockedDoor, this );
-            EventHandler.GetInstance().Unsubscribe( ObserverEventType.FailedToUnlockDoor, this );
+            ObserverEventHandler.GetInstance().Unsubscribe( ObserverEventType.SucceedToUnlockedDoor, this );
+            ObserverEventHandler.GetInstance().Unsubscribe( ObserverEventType.FailedToUnlockDoor, this );
         }
 
         public void OnNotify( ObserverEventType eventType, object data )

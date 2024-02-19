@@ -1,6 +1,5 @@
 using Observer.Core;
 using UnityEngine;
-using EventHandler = Observer.Core.EventHandler;
 
 namespace Observer
 {
@@ -36,13 +35,13 @@ namespace Observer
         protected virtual void OnTriggerEnter( Collider other )
         {
             if ( other.CompareTag( targetTag ) )
-                EventHandler.GetInstance().Notify( ObserverEventType.ReachInteractable, gameObject );
+                ObserverEventHandler.GetInstance().Notify( ObserverEventType.ReachInteractable, gameObject );
         }
 
         protected void OnTriggerExit( Collider other )
         {
             if ( other.CompareTag( targetTag ) )
-                EventHandler.GetInstance().Notify( ObserverEventType.LeaveInteractable, gameObject );
+                ObserverEventHandler.GetInstance().Notify( ObserverEventType.LeaveInteractable, gameObject );
         }
 
         public InteractableType GetInteractableType()
@@ -53,7 +52,7 @@ namespace Observer
         public virtual void Interact()
         {
             Debug.Log( $"[{gameObject.name}] - Someone is interacting with me." );
-            EventHandler.GetInstance().Notify( ObserverEventType.Interacted, gameObject );
+            ObserverEventHandler.GetInstance().Notify( ObserverEventType.Interacted, gameObject );
         }
     }
 }
