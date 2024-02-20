@@ -1,3 +1,4 @@
+using Games.FindThePatternsGame.Constraints;
 using UnityEngine;
 
 namespace Games.FindThePatternsGame
@@ -10,11 +11,15 @@ namespace Games.FindThePatternsGame
         [ SerializeField ]
         private Vector3 pos = Vector3.zero;
 
-        public void Initialise( Vector3 pos, Vector3 size )
+        [ SerializeField ]
+        private FTPRoadType roadType;
+
+        public void Initialise( Vector3 pos, Vector3 size, FTPRoadType type )
         {
             var trans = transform;
             trans.localScale = size;
             trans.localPosition = pos;
+            roadType = type;
         }
 
         public Vector3 GetSize()

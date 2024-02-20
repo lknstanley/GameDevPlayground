@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Games.FindThePatternsGame.Managers
         [ SerializeField ]
         private GameObject roadTemplate;
 
-        private int[,] _map;
+        private List< List< int > > _map;
 
         #region Unity Lifecycles
 
@@ -39,8 +40,8 @@ namespace Games.FindThePatternsGame.Managers
 
         private void GenerateMap()
         {
-            FTPRoadFactory.ShuffleRoadMap( initialMapSize, initialMapSize, out var map );
-            // var go = FTPRoadFactory.CreateRoad( roadTemplate, Vector3.zero, Vector3.one, transform );
+            FTPRoadFactory.ShuffleRoadMap( initialMapSize, initialMapSize, out _map );
+            FTPRoadFactory.PopulateRoadMap( _map, roadTemplate, transform );
         }
 
         #endregion

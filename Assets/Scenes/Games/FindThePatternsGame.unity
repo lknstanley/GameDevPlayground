@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1642903dd817478c8f3336dc41eb778b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMapSize: 4
+  initialMapSize: 10
   level: 0
   roadTemplate: {fileID: 5428111961116730248, guid: af39f7d9bc9534463973a7b78be0f694,
     type: 3}
