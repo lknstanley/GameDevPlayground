@@ -26,5 +26,10 @@ namespace Games.FindThePatternsGame
         {
             return size;
         }
+
+        public void ChangeColor( Color newColor )
+        {
+            GetComponent< Renderer >().material.color = newColor;
+        }
     }
 }

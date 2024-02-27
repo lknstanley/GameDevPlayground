@@ -22,8 +22,12 @@ namespace Games.FindThePatternsGame
         /// <param name="map"></param>
         /// <param name="template"></param>
         /// <param name="container"></param>
-        public static void PopulateRoadMap( List< List< int > > map, GameObject template, Transform container )
+        public static void PopulateRoadMap( List< List< int > > map, GameObject template, Transform container,
+            out List< Transform > roadTrans )
         {
+            // Initialise road transform list
+            roadTrans = new List< Transform >();
+
             for ( var i = 0; i < map.Count; i++ )
             {
                 var row = map[ i ];
@@ -32,22 +36,26 @@ namespace Games.FindThePatternsGame
                     var item = ( FTPRoadType ) row[ j ];
                     var pos = new Vector3( j, 0, i );
                     var size = Vector3.one;
+                    FTPRoad road = null;
                     switch ( item )
                     {
                         case FTPRoadType.Walkable:
-                            CreateRoad( template, pos, size, container, item );
+                            road = CreateRoad( template, pos, size, container, item );
                             break;
                         case FTPRoadType.NotWalkable:
                             pos += Vector3.up * 1f;
-                            CreateRoad( template, pos, size, container, item );
+                            road = CreateRoad( template, pos, size, container, item );
                             break;
                         case FTPRoadType.Entrance:
-                            CreateRoad( template, pos, size, container, item );
+                            road = CreateRoad( template, pos, size, container, item );
                             break;
                         case FTPRoadType.Goal:
-                            CreateRoad( template, pos, size, container, item );
+                            road = CreateRoad( template, pos, size, container, item );
                             break;
                     }
+
+                    if ( road != null )
+                        roadTrans.Add( road.transform );
                 }
             }
         }
