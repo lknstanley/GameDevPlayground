@@ -9,7 +9,7 @@ namespace CommandPattern
     public class CommandManager : MonoBehaviour, IManagerEvent< CommandManager >
     {
         [ Header( "Command Histories" ) ]
-        private readonly List< ICommand > _histories = new();
+        private List< ICommand > _histories = new();
 
         private int _counter;
 

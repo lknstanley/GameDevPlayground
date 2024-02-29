@@ -27,6 +27,11 @@ namespace Games.FindThePatternsGame
             return size;
         }
 
+        public FTPRoadType GetRoadType()
+        {
+            return roadType;
+        }
+
         public void ChangeColor( Color newColor )
         {
             GetComponent< Renderer >().material.color = newColor;

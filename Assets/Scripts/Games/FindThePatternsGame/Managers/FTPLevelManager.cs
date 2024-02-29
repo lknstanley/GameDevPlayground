@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Games.FindThePatternsGame.Constraints;
 using UnityEngine;
 
 namespace Games.FindThePatternsGame.Managers
@@ -14,6 +15,9 @@ namespace Games.FindThePatternsGame.Managers
 
         [ SerializeField ]
         private GameObject roadTemplate;
+
+        [ SerializeField ]
+        private GameObject playerTemplate;
 
         private List< List< int > > _map;
         private List< Transform > _roadTransforms;
@@ -43,6 +47,12 @@ namespace Games.FindThePatternsGame.Managers
         {
             FTPRoadFactory.ShuffleRoadMap( initialMapSize, initialMapSize, out _map );
             FTPRoadFactory.PopulateRoadMap( _map, roadTemplate, transform, out _roadTransforms );
+
+            // Find the entrance and instantiate the player
+            var entrance =
+                _roadTransforms.Find( r => r.GetComponent< FTPRoad >().GetRoadType() == FTPRoadType.Entrance );
+            // Instantiate the player
+            var player = Instantiate( playerTemplate, entrance.position + Vector3.up * 1, Quaternion.identity );
 
             // Move camera to the center of the map by getting transform from the road transforms
             var center = _roadTransforms[ initialMapSize / 2 * initialMapSize + initialMapSize / 2 ];
