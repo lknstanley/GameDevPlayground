@@ -54,7 +54,9 @@ namespace Games.FindThePatternsGame
             var map = FTPGameManager.GetInstance().GetLevelManager().GetMap();
             if ( ( int ) tempVec2.x >= 0 && ( int ) tempVec2.x < map.Count &&
                  ( int ) tempVec2.z >= 0 && ( int ) tempVec2.z < map[ ( int ) tempVec2.x ].Count )
-                return map[ ( int ) tempVec2.x ][ ( int ) tempVec2.z ] == 0;
+                return map[ ( int ) tempVec2.x ][ ( int ) tempVec2.z ] == 0 ||
+                       map[ ( int ) tempVec2.x ][ ( int ) tempVec2.z ] == 2 ||
+                       map[ ( int ) tempVec2.x ][ ( int ) tempVec2.z ] == 3;
             return false;
         }
 
