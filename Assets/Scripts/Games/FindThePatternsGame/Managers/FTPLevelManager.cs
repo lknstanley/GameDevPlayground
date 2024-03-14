@@ -69,7 +69,7 @@ namespace Games.FindThePatternsGame.Managers
             // Move camera to the center of the map by getting transform from the road transforms
             var center = _roadTransforms[ initialMapSize / 2 * initialMapSize + initialMapSize / 2 ];
             var cam = Camera.main;
-            cam.transform.position = center.position + Vector3.up * 10f;
+            cam.transform.position = center.position + Vector3.up * 15f;
         }
 
         #endregion
