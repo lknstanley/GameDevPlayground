@@ -79,9 +79,24 @@ namespace Games.FindThePatternsGame
                 var list = new List< int >();
                 for ( var j = 0; j < width; j++ )
                     if ( i == 0 || i == height - 1 || j == 0 || j == width - 1 )
+                    {
                         list.Add( 1 );
+                    }
                     else
-                        list.Add( 0 );
+                    {
+                        // Only generate walkable one step closer to the entrance and exit
+                        if ( i == 1 || j == 1 || i == height - 2 || j == width - 2 )
+                        {
+                            list.Add( 0 );
+                        }
+                        else
+                        {
+                            // Randomly generate workable or not walkable
+                            var rand = Random.Range( 0, 100 );
+                            list.Add( rand <= 60 ? 0 : 1 );
+                        }
+                    }
+
                 map.Add( list );
             }
 
